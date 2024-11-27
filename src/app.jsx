@@ -1,16 +1,36 @@
 import * as React from 'react'
 import { createRoot } from 'react-dom/client'
-import { RadialMenu } from './components/RadialMenu.jsx'
-import { radialSize, defaultRadialItems } from './data/constants.js';
+import { RadialMenu } from './components/RadialMenu'
+import { FilmStrip } from './components/FilmStrip'
+
+import {
+    radialSize,
+    defaultRadialItems,
+    defaultRadialItems2,
+    defaultRadialItems3,
+    defaultRadialItems4,
+    defaultRadialItems5
+} from './data/constants.js';
 
 const App = () => {
+    const configs = [
+        defaultRadialItems,
+        defaultRadialItems2,
+        defaultRadialItems3,
+        defaultRadialItems4,
+        defaultRadialItems5
+    ]
+
+    const [activeConfig, setActiveConfig] = React.useState(0)
+
     return (
         <>
             <RadialMenu
                 width={radialSize}
                 height={radialSize}
-                items={defaultRadialItems}
+                items={configs[activeConfig]}
             />
+            {/* <FilmStrip /> */}
         </>
     )
 }

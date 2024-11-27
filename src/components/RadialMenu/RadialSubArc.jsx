@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as d3 from 'd3'; import { radialSize, radialPadding } from '../data/constants.js';
+import * as d3 from 'd3'; import { radialSize, radialPadding } from '../../data/constants.js';
 
 export const RadialSubArc = ({
     innerRadius = 0,
@@ -74,7 +74,8 @@ export const RadialSubArc = ({
                 .attr('transform', 'scale(1)')
         });
 
-        path.on('mouseup', () => {
+        path.on('click', (event) => {
+            event.stopPropagation()
             console.log('SubItem clicked', label)
         });
     }, []);

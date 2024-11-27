@@ -16,7 +16,7 @@ const createWindow = () => {
     height: radialSize + 200,
     nodeIntegration: true,
     backgroundColor: 'rgba(225, 240, 255, 1)',
-    resizable: false,
+    // resizable: false,
     // transparent: true,
     // frame: false,
     webPreferences: {

@@ -31,12 +31,12 @@ export const RadialMenu = ({
             .attr('width', width)
             .attr('height', height)
             .attr('viewBox', `0 0 ${width} ${height}`)
-    }, []);
+    }, [width, height]);
 
     return (
         <svg ref={ref}>
             <RadialDefs />
-            <RadialCenter label="Context"/>
+            <RadialCenter label="Context" />
             { items.map(({ label, subItems }, index) => {
                 const startAngle = index * angleStep;
                 const endAngle = startAngle + angleStep;
