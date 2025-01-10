@@ -4,6 +4,12 @@ import { radialSize } from './data/constants.js';
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
 
+const sharedStore = {
+  data: null
+}
+
+let mainWindow
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
@@ -11,16 +17,16 @@ if (require('electron-squirrel-startup')) {
 
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: radialSize + 200,
     height: radialSize + 200,
-    nodeIntegration: true,
     backgroundColor: 'rgba(225, 240, 255, 1)',
     // resizable: false,
     // transparent: true,
     // frame: false,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+      nodeIntegration: true,
     },
   });
 
@@ -38,6 +44,10 @@ app.whenReady().then(() => {
   installExtension(REACT_DEVELOPER_TOOLS)
     .then((name) => console.log(`Added Extension:  ${name}`))
     .catch((err) => console.log('An error occurred: ', err));
+
+  ipcMain.on('counter-value', (_event, value) => {
+    console.log(value) // will print value to Node console
+  })
 
   createWindow();
 

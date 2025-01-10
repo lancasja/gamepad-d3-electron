@@ -22,9 +22,23 @@ const App = () => {
     ]
 
     const [activeConfig, setActiveConfig] = React.useState(0)
+    const [store, setStore] = React.useState({ data: null })
+
+    React.useEffect(() => {
+        // const handleStoreUpdate = (newStore) => {
+        //     setStore(newStore)
+        // }
+
+        // window.electron.onStoreUpdate(handleStoreUpdate)
+
+        // return () => {
+        //     window.electron.onStoreUpdate(() => { })
+        // }
+    }, [])
 
     return (
         <>
+            <p>Store update: { store.data }</p>
             <RadialMenu
                 width={radialSize}
                 height={radialSize}
